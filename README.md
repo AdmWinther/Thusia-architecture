@@ -113,9 +113,12 @@ The REST API backend builds as a custom Docker image through a **GitHub Actions*
 
 ## Related repositories (private)
 
-- `Thusia-awsInfra` — the Terraform codebase documented here
-- `Thusia-backend` — Java/Spring Boot REST API (Dockerfile + GitHub Actions workflow)
-- `Thusia-joomla-*` — custom Joomla components for the public site
+- `Thusia-awsInfra` — the Terraform codebase documented here.
+- `Thusia-Rest_API` — Java/Spring Boot REST API (Dockerfile + GitHub Actions workflow).
+- `Joomla-Component-Template` — Template for making a custom Joomla components for the public site.
+- `JoomlaComponent_SignupForm_JV4` — custom Joomla components for the Log-in form.
+- `JoomlaComponent_MaskEmailsList` — custom Joomla components for the showing the list of mask emails the user owns.
+- `JoomlaComponent_NewEmailForm_JV4` — custom Joomla components that allows user to make a new mask email.
 
 *Code walkthrough available on request.*
 
