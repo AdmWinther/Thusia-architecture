@@ -107,16 +107,14 @@ The REST API backend builds as a custom Docker image through a **GitHub Actions*
 
 **Why a single EC2 instance instead of ECS/EKS?** Cost and proportionality. For a pre-launch product, a single instance with Docker Compose delivers the full containerized architecture at a fraction of the cost. The Terraform/module structure means migrating to ECS later is a contained change.
 
-**Why self-host Apache James instead of a mail SaaS?** The mask-forwarding logic *is* the product. Owning the mail server means owning the core feature — and it was the single steepest learning curve in the project (SMTP, IMAP, mailet chains, deliverability, SES relaying).
+**Why self-host Apache James instead of a mail SaaS?** The mask-forwarding logic *is* the product. Owning the mail server means owning the core feature — and it was the single steepest learning curve in the project (SMTP, IMAP, mailet chains, deliverability, SES relaying). On the other hand, using Apache James allow me to move from one cloud provider to another in a shotr time but if I entirely rely on the provider's email service, it would take more effort. The reason for using AWS SES for outbound relay is that AWS does not allow outbound traffic on port 25. I was forced to use AWS-SES for sending emails.
 
 **Why generate configs from Terraform instead of committing them?** Hand-edited configs drift, and configs with credentials don't belong in git. Generation makes the stack reproducible and keeps secrets out of history.
-
-**What I'd do differently today:** remote Terraform state with locking (S3 + DynamoDB) instead of local state; secrets in AWS Secrets Manager rather than tfvars; and splitting the mail server onto its own instance for independent scaling.
 
 ## Related repositories (private)
 
 - `Thusia-awsInfra` — the Terraform codebase documented here.
-- `Thusia-Rest_API` — Java/Spring Boot REST API (Dockerfile + GitHub Actions workflow).
+- `Thusia-RestAPI` — Java/Spring Boot REST API (Dockerfile + GitHub Actions workflow).
 - `Joomla-Component-Template` — Template for making a custom Joomla components for the public site.
 - `JoomlaComponent_SignupForm_JV4` — custom Joomla components for the Log-in form.
 - `JoomlaComponent_MaskEmailsList` — custom Joomla components for the showing the list of mask emails the user owns.
