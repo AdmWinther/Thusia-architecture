@@ -48,6 +48,8 @@ flowchart TD
 
 Inbound mail arrives at the Apache James container, which applies the mask-forwarding rules and relays outbound mail through AWS SES. The database container is never exposed publicly; all web traffic terminates TLS at Nginx.
 
+* The reason for using AWS SES is that AWS do not allow outbound traffic on port 25. After several time refusing my request to allow traffic on port 25, I was at the end forced to use AWS-SES for sending emails. 
+
 ## Components
 
 | Component | Role | Notes |
